@@ -1,6 +1,8 @@
 function f_ct_initialize(app)
 
-app.dsetpathEditField.Value = 'F:\AC_data\caiman_data_dream3\movies\M124_im1_AC_tone_lick_reward1_4_11_22_mpl5_pl3.h5';
+%app.dsetpathEditField.Value = 'F:\AC_data\caiman_data_dream3\movies\M124_im1_AC_tone_lick_reward1_4_11_22_mpl5_pl3.h5';
+app.dsetpathEditField.Value = 'C:\Users\ys2605\Desktop\stuff\AC_data\caiman_data_dream\movies\M124_im1_AC_tone_lick_reward1_4_11_22_mpl5_pl1.h5';
+
 
 app.plots.im_data = imagesc(app.UIAxes_data, 0);
 axis(app.UIAxes_data , 'tight')
