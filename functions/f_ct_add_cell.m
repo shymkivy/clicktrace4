@@ -7,6 +7,10 @@ idx1 = cc.mn;
 
 app.data.cell_list = [app.data.cell_list; cc];
 
+app.data.A_cell = [app.data.A_cell; app.data.current_cell.A_slice];
+app.data.trace_cell = [app.data.trace_cell; app.data.current_cell.V];
+app.data.eigval_cell = [app.data.eigval_cell, app.data.current_cell.S];
+
 app.data.Y_n(idx1(1,1):idx1(1,2), idx1(2,1):idx1(2,2),:) = app.data.Y_n(idx1(1,1):idx1(1,2), idx1(2,1):idx1(2,2),:) - roi_r1;
 
 if strcmpi(app.im_sourceDropDown.Value, 'corr')
@@ -26,5 +30,6 @@ app.plots.im_data.CData = app.data.im_source;
 
 app.data.Y_components(idx1(1,1):idx1(1,2), idx1(2,1):idx1(2,2)) = app.data.Y_components(idx1(1,1):idx1(1,2), idx1(2,1):idx1(2,2)) + reshape(cc.U, cc.dimsR(1:2));
 app.plots.im_components.CData = app.data.Y_components;
+
 
 end
