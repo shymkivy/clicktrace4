@@ -46,7 +46,7 @@ fprintf('Mean trace = %.5f; mean spac = %.5f; eig = %.5f\n', mean(V(:,1)), mean(
 %     spat1 = spat1 * -1;
 % end
 
-if ~isgraphics(app.plots.fig_roi)
+if ~isfield(app.plots, 'fig_roi') || ~isgraphics(app.plots.fig_roi)
     app.plots.fig_roi = figure;
     app.plots.fig_roi_im = imagesc(0);
     axis(app.plots.fig_roi_im.Parent, 'equal');
@@ -64,12 +64,19 @@ else
     %delete(app.plots.rect1)
 end
 
-1
+A_slice = zeros(app.data.dims(1), app.data.dims(2));
+A_slice(idx1(1,1):idx1(1,2), idx1(2,1):idx1(2,2)) = spat1;
 
-app.data.current_cell_mn = idx1;
-app.data.current_cell_roin = roin;
-app.data.current_cell_U = U1;
-app.data.current_cell_S = S(1,1);
-app.data.current_cell_V = V1;
+app.data.A_cell = [app.data.A_cell; A_slice];
+app.data.trace_cell = [app.data.trace_cell; V1];
+app.data.eigval_cell = [app.data.eigval_cell, S(1,1)];
+
+app.data.current_cell.A_slice = A_slice;
+app.data.current_cell.mn = idx1;
+app.data.current_cell.roin = roi1n;
+app.data.current_cell.U = U1;
+app.data.current_cell.S = S(1,1);
+app.data.current_cell.V = V1;
+app.data.current_cell.dimsR = [dr1, dr2, Tr];
 
 end

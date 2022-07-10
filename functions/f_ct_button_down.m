@@ -64,6 +64,10 @@ else
     %delete(app.plots.rect1)
 end
 
+A_slice = zeros(app.data.dims(1), app.data.dims(2));
+A_slice(idx1(1,1):idx1(1,2), idx1(2,1):idx1(2,2)) = spat1;
+
+app.data.current_cell.A_slice = A_slice;
 app.data.current_cell.mn = idx1;
 app.data.current_cell.roin = roi1n;
 app.data.current_cell.U = U1;
