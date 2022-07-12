@@ -2,15 +2,23 @@ function f_ct_load_dset(app)
 
 disp('Loading...');
 
-dset_path = app.dsetpathEditField.Value;
+dset_path = app.moviepathEditField.Value;
 
 app.data.Y = h5read(dset_path, '/mov');
 
 Ys = single(app.data.Y);
 
-[Y_n, bkg_spat, bkg_temp] = f_s4_remove_mov_bkg(Ys, 1);
+if app.removemeanmeanCheckBox.Value
+    [Yn, bkg_spat, bkg_temp] = f_s4_remove_mov_bkg(Ys, 1);
+    app.data.mean_bkg_spat = bkg_spat;
+    app.data.mean_bkg_temp = bkg_temp;
+else
+    Yn = Ys;
+    app.data.mean_bkg_spat = [];
+    app.data.mean_bkg_temp = [];
+end
 clear Ys;
-app.data.Y_n = Y_n;
+app.data.Yn = Yn;
 % 
 % figure; imagesc(reshape(bkg_spat, 256, 256))
 % 
@@ -44,7 +52,7 @@ app.data.Y_n = Y_n;
 % 
 % figure; imagesc(reshape(samp_spat2,256,256))
 
-app.data.dims = size(app.data.Y_n);
+app.data.dims = size(app.data.Yn);
 app.data.Y_components = zeros(app.data.dims(1), app.data.dims(2));
 
 app.data.cell_list = {};

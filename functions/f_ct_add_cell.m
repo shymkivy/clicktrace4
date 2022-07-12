@@ -11,18 +11,18 @@ app.data.A_cell = [app.data.A_cell; app.data.current_cell.A_slice];
 app.data.trace_cell = [app.data.trace_cell; app.data.current_cell.V];
 app.data.eigval_cell = [app.data.eigval_cell, app.data.current_cell.S];
 
-app.data.Y_n(idx1(1,1):idx1(1,2), idx1(2,1):idx1(2,2),:) = app.data.Y_n(idx1(1,1):idx1(1,2), idx1(2,1):idx1(2,2),:) - roi_r1;
+app.data.Yn(idx1(1,1):idx1(1,2), idx1(2,1):idx1(2,2),:) = app.data.Yn(idx1(1,1):idx1(1,2), idx1(2,1):idx1(2,2),:) - roi_r1;
 
 if strcmpi(app.im_sourceDropDown.Value, 'corr')
     ncp = 1;
-    Ys_zero = app.data.Y_n(idx1(1,1)-ncp:idx1(1,2)+ncp, idx1(2,1)-ncp:idx1(2,2)+ncp,:);
+    Ys_zero = app.data.Yn(idx1(1,1)-ncp:idx1(1,2)+ncp, idx1(2,1)-ncp:idx1(2,2)+ncp,:);
     
     Ys_zero_c = f_neighbor_corr(Ys_zero, ncp);
 
     app.data.im_source(idx1(1,1):idx1(1,2), idx1(2,1):idx1(2,2)) = Ys_zero_c;
     
 elseif strcmpi(app.im_sourceDropDown.Value, 'std')
-    app.data.im_source(idx1(1,1):idx1(1,2), idx1(2,1):idx1(2,2)) = std(app.data.Y_n(idx1(1,1):idx1(1,2), idx1(2,1):idx1(2,2),:),0,3);
+    app.data.im_source(idx1(1,1):idx1(1,2), idx1(2,1):idx1(2,2)) = std(app.data.Yn(idx1(1,1):idx1(1,2), idx1(2,1):idx1(2,2),:),0,3);
 end
 
 

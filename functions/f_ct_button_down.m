@@ -16,7 +16,7 @@ roi1 = app.data.Y(idx1(1,1):idx1(1,2), idx1(2,1):idx1(2,2),:);
 trace1 = squeeze(mean(mean(roi1,1),2));
 trace1 = trace1 - mean(trace1);
 
-roi1n = app.data.Y_n(idx1(1,1):idx1(1,2), idx1(2,1):idx1(2,2),:);
+roi1n = app.data.Yn(idx1(1,1):idx1(1,2), idx1(2,1):idx1(2,2),:);
 [dr1, dr2, Tr] = size(roi1n);
 roi1n2d = reshape(roi1n, dr1*dr2, Tr);
 
